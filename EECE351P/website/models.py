@@ -28,14 +28,17 @@ def checkAvailibility(roomType):
     leaveDate = sorted([x.checkout for x in hotelroom])
     count = 50 if int(roomType) == 1 else 30 if roomType == 2 else 10
     import datetime
-    for i in range(len(registerDate)):
+    i = j = 0
+    while i < len(registerDate):
         checkin = registerDate[i]
         x = datetime.datetime(int(checkin[:4]), int(checkin[5:7]), int(checkin[8:]))
         checkout = leaveDate[i]
         y = datetime.datetime(int(checkout[:4]), int(checkout[5:7]), int(checkout[8:])) 
         if x < y:
+            i+=1
             count -=1
         else:
+            j += 1
             count +=1
         if count < 0:
             return False
