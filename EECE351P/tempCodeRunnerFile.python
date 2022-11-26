@@ -1,3 +1,0 @@
-import time
-int(str(time.localtime().tm_hour))
-print(time)
