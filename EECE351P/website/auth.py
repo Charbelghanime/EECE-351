@@ -72,6 +72,7 @@ def Book():
         checkout = request.form.get('checkout')
         if not roomType or not breakfast or not numofpeople or not checkin or not checkout:
             flash('Please fill all the fields!', category = 'error')
+            return redirect(url_for('auth.Book'))
         if int(roomType) == 1:
             roomPrice = 50
         elif int(roomType) == 2:
