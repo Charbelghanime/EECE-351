@@ -1,0 +1,47 @@
+{%extends 'base.html' %} {% block title %}Book{% endblock %} {%block content%}
+<head>
+	<link rel="stylesheet" href="/static/design.css">
+</head>
+<br />
+<h1 align="center">
+	<strong><h1>BOOK YOUR NIGHT</h1></strong>
+</h1>
+<form method="POST">
+	<br />
+	<select class="form-select" aria-label="Default select example" name = "roomType" id = "roomType">
+		<option selected>Select The Room Size</option>
+		<option value="1">Single Room</option>
+		<option value="2">Double Room</option>
+		<option value="3">Family Room</option>
+	</select>
+	<br /><br />
+	<select class="form-select" aria-label="Default select example" name = "breakfast" id = "breakfast">
+		<option selected>Select eating options</option>
+		<option value="1">BreakFast</option>
+		<option value="2">BreakFast and Lunch</option>
+		<option value="3">BreakFast and Lunch and Dinner</option>
+	</select>
+	<br /><br />
+	<label for="customRange3" class="form-label"
+		>Enter number of people (max = 6)</label
+	>
+	<input
+		type="range"
+		class="form-range"
+		min="1"
+		max="6"
+		step="1"
+		name = "number"
+		id = "number"
+		id="customRange3"
+	/>
+    <br />
+    <label for="Book day" id = "checkin" name = "checkin">Enter your booking day</label><br>
+        <input type="date" id="checkin" name="checkin"><br>
+	<br />
+		<label for="Checkout day" id = "checkout" name = "checkin">Enter your checkout day</label><br>
+        <input type="date" id="checkout" name="checkout"><br>
+	<br />
+	<button type="submit" class="btn btn-outline-dark">Book Now</button>
+</form>
+{%endblock%}
