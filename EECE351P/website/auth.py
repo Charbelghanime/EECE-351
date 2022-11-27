@@ -70,6 +70,8 @@ def Book():
         numofpeople= request.form.get('number')
         checkin = request.form.get('checkin')
         checkout = request.form.get('checkout')
+        if not roomType or not breakfast or not numofpeople or not checkin or not checkout:
+            flash('Please fill all the fields!', category = 'error')
         if int(roomType) == 1:
             roomPrice = 50
         elif int(roomType) == 2:
