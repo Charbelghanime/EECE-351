@@ -1,0 +1,38 @@
+{%extends 'base.html' %} {% block title %}About{% endblock %} {%block content%}
+<br />
+    <h1 align="center">
+        <strong><h1><strong>Check Your <mark>Registration Details</mark></strong></h1></strong>
+    </h1>
+    <h6>
+        First Name: {{ user.firstName }}<br />
+        Last Name: {{ user.lastName }}<br />
+        Email: {{ user.email }}<br />
+    </h6>
+    <br />
+    <h6>
+        Number Of People: {{ room.numOfPeople }}<br />
+        Check In Date: {{ room.checkin }} <br />
+        Check Out Date: {{ room.checkout }} <br />
+    </h6>
+    <br />
+    <h5>
+        Your Grand Total is: {{ room.totalPrice }} $<br />
+    </h5>
+
+<br />
+<form method="POST">
+    <button input type = "submit" name = "delete" id = "delete" class="btn btn-outline-dark">Cancel Your Night</button>
+        <br /><br />
+    <div>
+        <input type = "text" id = "updatePeople" name = "updatePeople" class="form-control" aria-describedby="passwordHelpInline" placeholder="Enter The Number of Guests You Would Like To Add">
+    </div>
+    <br />
+    <label for="Book day" id = "checkin" name = "checkin">Enter your booking day</label>
+    <input type="date" id="checkin" name="checkin">
+    <label for="Checkout day" id = "checkout" name = "checkin">Enter your checkout day</label>
+    <input type="date" id="checkout" name="checkout"><br />
+    <br />
+    <button type="submit" class="btn btn-outline-dark">Submit Changes</button>
+</form>
+
+{%endblock%}
