@@ -1,3 +1,0 @@
-from sqlalchemy.sql import func
-import datetime
-print(datetime.datetime(int(func.now)))
