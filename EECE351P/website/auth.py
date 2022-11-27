@@ -159,7 +159,7 @@ def changeNumberOfPeople(id, num):
             return redirect(url_for('auth.About'))
         checkin = room.checkin
         checkout =  room.checkout
-        room.totalPrice = int(room.numOfPeople) * int(str(datetime.datetime(int(checkout[:4]), int(checkout[5:7]), int(checkout[8:]))\
+        room.totalPrice = (int(room.roomType)* 50 + int(room.breakFast) * 10) * int(room.numOfPeople) * int(str(datetime.datetime(int(checkout[:4]), int(checkout[5:7]), int(checkout[8:]))\
     - datetime.datetime(int(checkin[:4]), int(checkin[5:7]), int(checkin[8:]))
 )[:2])
         db.session.commit()
@@ -189,7 +189,7 @@ def changeRoomNight(id, checkin, checkout):
             room.checkin = checkin
             room.checkout = checkout
             if checkAvailibility(room.roomType):
-                room.totalPrice = int(room.numOfPeople) * int(str(datetime.datetime(int(checkout[:4]), int(checkout[5:7]), int(checkout[8:]))\
+                room.totalPrice = (int(room.roomType)* 50 + int(room.breakFast) * 10) * int(room.numOfPeople) * int(str(datetime.datetime(int(checkout[:4]), int(checkout[5:7]), int(checkout[8:]))\
     - datetime.datetime(int(checkin[:4]), int(checkin[5:7]), int(checkin[8:]))
 )[:2])
                 db.session.commit()
