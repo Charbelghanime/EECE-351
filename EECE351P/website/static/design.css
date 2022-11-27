@@ -238,3 +238,16 @@ a:link, a:visited, a:hover, a:active {
     content: 'text-button';
     line-height: 32px;
 }
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
+  @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+.ft14 {
+font-size: 44px !important;
+  color:red;
+  
+}
+  .ft14
+  {
+  position: absolute;
+  right: 0;
+}
