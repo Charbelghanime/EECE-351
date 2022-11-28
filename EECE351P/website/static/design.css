@@ -251,3 +251,23 @@ font-size: 44px !important;
   position: absolute;
   right: 0;
 }
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
+  @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+.ft14 {
+font-size: 44px !important;
+  color:red;
+  
+}
+  .ft14
+  {
+  position: absolute;
+  right: 100;
+}   
+
+  .inner {
+    height: 200px;
+    width: 200px;
+    right: -50px;
+    top: 150px;
+  }
