@@ -1,0 +1,44 @@
+{%extends 'base.html' %} {% block title %}Login{% endblock %} {%block content%}
+<br />
+<head>
+	<link rel="stylesheet" href="/static/design.css">
+</head>
+<h1 align="center"><strong>Welcome</strong> <mark>Back!</mark></h1>
+<form method="POST">
+	<br />
+	<div class="row g-3 align-items-center">
+		<div class="col-auto">
+			<label for="email" class="col-form-label">Email&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+		</div>
+		<div class="col-auto">
+			<input type="email" id="email" name = "email" class="form-control" aria-describedby="passwordHelpInline" placeholder="name@example.com">
+		</div>
+		<div class="col-auto">
+			<span id="passwordHelpInline" class="form-text">
+			</span>
+		</div>
+		</div>
+	<br />
+	<div class="row g-3 align-items-center">
+		<div class="col-auto">
+			<label for="inputPassword6" class="col-form-label">Password</label>
+		</div>
+		<div class="col-auto">
+			<input type = "password" name = "password" class="form-control" aria-describedby="passwordHelpInline">
+		</div>
+			<div class="col-auto">
+				<span id="passwordHelpInline" class="form-text">
+					Must be 7-20 characters long.
+				</span>
+			</div>
+		</div>
+		<div class = "checkbox" value = "1">
+			<label>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type = "checkbox" name = "remember_me" value = "1"> 
+					Remember me
+			</label>
+		</div>
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" class="w-45 btn btn-outline-dark">Log In</button>
+	</div>
+</form>
+{%endblock%}

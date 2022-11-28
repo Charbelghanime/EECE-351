@@ -1,0 +1,51 @@
+{%extends 'base.html' %} {% block title %}About{% endblock %} {%block content%}
+<br />
+<head>
+	<link rel="stylesheet" href="/static/design.css">
+</head>
+    <h1 align="center">
+        <strong><h1><strong>Check Your <mark>Registration Details</mark></strong></h1></strong>
+    </h1>
+    <h6>
+        First Name: {{ user.firstName }}<br />
+        Last Name: {{ user.lastName }}<br />
+        Email: {{ user.email }}<br />
+    </h6>
+    <br />
+    <h6>
+        Number Of People: {{ room.numOfPeople }}<br />
+        Check In Date: {{ room.checkin }} <br />
+        Check Out Date: {{ room.checkout }} <br />
+        Dining Option: 
+        {%if room.breakFast == '1'%} Breakfast<br />
+        {%elif room.breakFast == '2'%} Breakfast and Dinner<br />
+        {%else%} Breakfast, Lunch and Dinner<br />
+        {%endif%}
+        Room Type: 
+        {% if  room.roomType == '1' %} Single Room<br />
+        {% elif room.roomType == '2' %} Double Room<br />
+        {% elif room.roomType == '3' %} Family Room<br />
+        {% endif %}
+    </h6>
+    <br />
+    <h5>
+        Your Grand Total is: {{ room.totalPrice }} $<br />
+    </h5>
+    
+<br />
+<form method="POST">
+    <button input type = "submit" name = "delete" id = "delete" class="btn btn-outline-dark" href = "delete">Cancel Your Night</button>
+        <br /><br />
+    <div>
+        <input type = "text" id = "updatePeople" name = "updatePeople" class="form-control" aria-describedby="passwordHelpInline" placeholder="Enter The Number of Guests You Would Like To Add">
+    </div>
+    <br />
+    <label for="Book day" id = "checkin" name = "checkin">Change your: Booking day</label>
+    <input type="date" id="checkin" name="checkin">
+    <label for="Checkout day" id = "checkout" name = "checkin">Checkout day</label>
+    <input type="date" id="checkout" name="checkout"><br />
+    <br />
+    <button type="submit" class="btn btn-outline-dark">Submit Changes</button>
+</form>
+
+{%endblock%}
