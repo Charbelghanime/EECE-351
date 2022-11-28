@@ -213,12 +213,12 @@ def generateOTP():
     import random
     return str(random.randint(100000, 999999))
 
-def send_email(receiver, sender = "xxx@gmail.com"):
+def send_email(receiver, sender = "eece351hotel@gmail.com"):
     import smtplib
     
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
-    password = "sxndntrucsmznlqn"
+    password = "qqtzxvxjrqohpopj"
     server.login(sender, password)
     otp = generateOTP()
     msg = "Your OTP is " + otp
