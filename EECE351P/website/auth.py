@@ -14,15 +14,15 @@ def login():
         remember_me = True if request.form.get('remember_me') else False
         user = User.query.filter_by(email = email).first()
         if user:
-            if not user.is_verified:
+            if not  check_password_hash(user.password, password):
+                flash('Incorrect Password, Please Try Again!', category = 'error')
+            elif not user.is_verified:
                 flash('Please verify your email first', category='error')
-                return redirect(url_for('auth.verify', otp = user.OTP))
-            elif check_password_hash(user.password, password):
+                return redirect(url_for('auth.verify'))
+            else:
                 flash('Logged in Successfully!', category = 'success')
                 login_user(user, remember=remember_me)
-                return redirect(url_for('auth.Book'))
-            else:
-                flash('Incorrect Password, Please Try Again!', category = 'error')
+                return redirect(url_for('auth.Book'))  
         else:
             flash('Email Does Not Exist!', category = 'error')
     return render_template("login.html", user = current_user)
@@ -54,13 +54,14 @@ def sign_up():
         elif len(password1) < 7:
             flash('Password is not secure!', category = 'error')
         else:
+            x = send_email(email)
             new_user = User(email=email, firstName=firstName, password=generate_password_hash(
-            password1, method='sha256'), lastName = lastName, OTP = send_email(email))
+            password1, method='sha256'), lastName = lastName, OTP = x)
             db.session.add(new_user)
             db.session.commit()
-            login_user(new_user, remember=True)
-            flash('Account successfully created! An email Verification have been sent', category = 'success')
-            return redirect(url_for('auth.verify', otp = new_user.OTP))
+            login_user(new_user)
+            flash('Account successfully created! An email Verification has been sent', category = 'success')
+            return redirect(url_for('auth.verify', user = user))
     return render_template("sign-up.html", user = current_user)
 
 @auth.route('book', methods=['GET','POST'])
@@ -97,10 +98,10 @@ def Book():
         elif datetime.datetime(int(checkin[:4]), int(checkin[5:7]), int(checkin[8:])) > datetime.datetime(int(checkout[:4]), int(checkout[5:7]), int(checkout[8:])):
             flash('Please Enter a Valid Check Out Date!', category = 'error')
             redirect(url_for('auth.Book'))
-        elif int(numofpeople) > 1 and int(roomType) == 1:
+        elif int(numofpeople) > 3 and int(roomType) == 1:
             flash('Please Book a larger room!', category = 'error')
             redirect(url_for('auth.Book'))
-        elif int(numofpeople) > 3 and int(roomType) == 2:
+        elif int(numofpeople) > 5 and int(roomType) == 2:
             flash('Please Book a larger room!', category = 'error')
             redirect(url_for('auth.Book'))
         elif(-int(checkin[:4]) + int(checkout[:4]) > 1): 
@@ -157,13 +158,20 @@ def cancelRegistration():
 def changeNumberOfPeople(id, num):
     room = HotelRoom.query.filter_by(id=id).first()
     if room:
+        temp = room.numOfPeople
         room.numOfPeople = int(room.numOfPeople) +  int(num)
         if room.numOfPeople > 6:
             flash('You cannot be more than 6 guests, please book a new room!', category = 'error')
-            room.numOfPeople = 6
+            room.numOfPeople = temp
             return redirect(url_for('auth.About'))
         checkin = room.checkin
         checkout =  room.checkout
+        if room.numOfPeople < 3:
+            room.roomType = 1
+        elif room.numOfPeople < 5:
+            room.roomType = 2
+        else:
+            room.roomType = 3
         room.totalPrice = (int(room.roomType)* 50 + int(room.breakFast) * 10) * int(room.numOfPeople) * int(str(datetime.datetime(int(checkout[:4]), int(checkout[5:7]), int(checkout[8:]))\
     - datetime.datetime(int(checkin[:4]), int(checkin[5:7]), int(checkin[8:]))
 )[:2])
@@ -226,20 +234,21 @@ def send_email(receiver, sender = "eece351hotel@gmail.com"):
     server.quit()
     return otp
 
-@auth.route("/verify/<otp>", methods=['GET','POST'])
-def verify(otp):
+@auth.route("/verify", methods=['GET','POST'])
+@login_required
+def verify():
     if current_user.is_verified:
         flash('You have already verified your account!', category = 'error')
         return redirect(url_for('views.home'))
     else:
         if request.method == 'POST':
             m = request.form.get('otp')
-            if otp == m:
-                flash('You have successfully verified your email!', category = 'success')
+            if current_user.OTP == m:
                 current_user.is_verified = True
+                db.session.commit()
+                flash('You have successfully verified your email!', category = 'success')
                 return redirect(url_for('auth.Book'))
             else:
-                print(m, otp)
                 flash('You have entered an invalid OTP!', category = 'error')
-                return redirect(url_for('auth.verify', otp = otp))
+                return redirect(url_for('auth.verify', otp = current_user.OTP))
         return render_template("verifyOTP.html", user = current_user)
