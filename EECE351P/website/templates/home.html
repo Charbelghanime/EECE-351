@@ -7,7 +7,6 @@
       <p class="fs-5 text-muted">Please refer to the below prices for more informations about our Hotel</p>
     </div>
   </header>
-
   <main>
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
       <div class="col">
@@ -22,7 +21,11 @@
               <li>Full Access to Our SPA</li>
               <li>Full Dining Experience</li>
             </ul>
-            <button type="submit" class="w-100 btn btn-lg btn-outline-primary">Sign up Now</button>
+            {% if user.is_authenticated %}
+              <button type="submit" class="w-100 btn btn-lg btn-outline-primary">Book Your Night</button>
+            {%else%}
+            <button type="submit" class="w-100 btn btn-lg btn-outline-primary">Sign Up Now</button>
+            {%endif%}
           </div>
         </div>
       </div>
@@ -38,7 +41,11 @@
               <li> Extreme VIP Experience</li>
               <li>VIP support</li>
             </ul>
-            <button type="submit" class="w-100 btn btn-lg btn-outline-primary">Sign up Now</button>
+            {% if user.is_authenticated %}
+              <button type="submit" class="w-100 btn btn-lg btn-outline-primary">Book Your Night</button>
+            {%else%}
+            <button type="submit" class="w-100 btn btn-lg btn-outline-primary">Sign Up Now</button>
+            {%endif%}
           </div>
         </div>
       </div>
@@ -54,7 +61,11 @@
               <li>Ultimate Experience For a family</li>
               <li>Ultimate Support</li>
             </ul>
-            <button type="submit" class="w-100 btn btn-lg btn-outline-primary">Sign up Now</button>
+            {% if user.is_authenticated %}
+              <button type="submit" class="w-100 btn btn-lg btn-outline-primary">Book Your Night</button>
+            {%else%}
+            <button type="submit" class="w-100 btn btn-lg btn-outline-primary">Sign Up Now</button>
+            {%endif%}
           </div>
         </div>
       </div>
