@@ -1,6 +1,0 @@
-checkin = '2021-04-01'
-checkout = '2021-04-02'
-import datetime 
-print(int(str(datetime.datetime(int(checkout[:4]), int(checkout[5:7]), int(checkout[8:]))\
-    - datetime.datetime(int(checkin[:4]), int(checkin[5:7]), int(checkin[8:]))
-)[:2]))
