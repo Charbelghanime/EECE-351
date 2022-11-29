@@ -1,49 +1,87 @@
-{%extends 'base.html' %} {% block title %}Book{% endblock %} {%block content%}
-<head>
-	<link rel="stylesheet" href="/static/style.css">
-</head>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<br />
-<div class="wrapper" align = "center">
-	<div class="title">
-	   Book Here
-	</div>
-<form method="POST">
-		<div class="field">
-		<select class="form-select" aria-label="Default select example" name = "roomType" id = "roomType">
-			<option selected>Select The Room Size</option>
-			<option value="1">Single Room</option>
-			<option value="2">Double Room</option>
-			<option value="3">Family Room</option>
-		</select>
-	</div>
-	<div class="field">
-		<select class="form-select" aria-label="Default select example" name = "breakfast" id = "breakfast">
-			<option selected>Select eating options</option>
-			<option value="1">BreakFast</option>
-			<option value="2">BreakFast and Lunch</option>
-			<option value="3">BreakFast and Lunch and Dinner</option>
-		</select>
-	</div>
-	<label for="customRange1" class="form-label"
-		>Enter number of people (max = 6)</label>
-	<input
-		type="range"
-		class="form-range"
-		min="1"
-		max="6"
-		step="1"
-		name = "number"
-		id = "number"
-		id="customRange1"
-	/>
-</br></br>
-    <label for="Book day" id = "checkin" name = "checkin">Enter your booking day</label><br>
-        <input type="date" id="checkin" name="checkin"><br>
-	<br />
-		<label for="Checkout day" id = "checkout" name = "checkin">Enter your checkout day</label><br>
-        <input type="date" id="checkout" name="checkout"><br>
-	<br />
-	<button type="submit" class="btn btn-outline-dark" style = "width:300px; height:45px;">Book Now</button>
+{%extends 'base.html' %}{%block content%}
+<div class="container py-3">
+  <form method = "POST">
+  <header>
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-4 fw-normal">Welcome To EECE 351 <mark><strong>Hotel!</strong></mark></h1>
+      <p class="fs-5 text-muted">Please refer to the below prices for more informations about our Hotel</p>
+    </div>
+  </header>
+  <main>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Single Room</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$35<small class="text-muted fw-light">/night</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>2 People Allowed Per Room</li>
+              <li>Full Access to Our SPA</li>
+              <li>Full Dining Experience</li>
+            </ul>
+            {% if user.is_authenticated %}
+              <button type="submit" class="w-100 btn btn-lg btn-outline-primary">Book Your Night</button>
+            {%else%}
+            <button type="submit" class="w-100 btn btn-lg btn-outline-primary">Sign Up Now</button>
+            {%endif%}
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Double Room</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$40<small class="text-muted fw-light">/night</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Up to 3 People/Room</li>
+              <li> Extreme VIP Experience</li>
+              <li>VIP support</li>
+            </ul>
+            {% if user.is_authenticated %}
+              <button type="submit" class="w-100 btn btn-lg btn-outline-primary">Book Your Night</button>
+            {%else%}
+            <button type="submit" class="w-100 btn btn-lg btn-outline-primary">Sign Up Now</button>
+            {%endif%}
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+          <div class="card-header py-3 text-bg-primary border-primary">
+            <h4 class="my-0 fw-normal">Family Room</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$60<small class="text-muted fw-light">/night</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Up to 6 People Per Night</li>
+              <li>Ultimate Experience For a family</li>
+              <li>Ultimate Support</li>
+            </ul>
+            {% if user.is_authenticated %}
+              <button type="submit" class="w-100 btn btn-lg btn-outline-primary">Book Your Night</button>
+            {%else%}
+            <button type="submit" class="w-100 btn btn-lg btn-outline-primary">Sign Up Now</button>
+            {%endif%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
 </form>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<iframe  width="800" height="600" alignment = "center" src="https://www.youtube.com/embed/A-yYTkfrHR0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br>
+<br>
+<div id="widget ">
+  <div class="btn-o bg" data-scribe="component:button" style="width: 300%;"><a href="https://instagram.com/eece351project?igshid=MDM4ZDc5MmU=" class="btn" id="b"><i class="fa fa-instagram ft14"></i><span class="label" id="l"></span></a></div>
+<script src="https://apps.elfsight.com/p/platform.js" defer></script>
+<div id="inner">
+<div class="elfsight-app-98912995-f031-4daa-a1ad-f704d39f3925"></div></div>
+</div>
 {%endblock%}
