@@ -140,7 +140,7 @@ def About():
             return redirect(url_for('auth.About'))
         cancelRegistration()
         return redirect(url_for('auth.Book'))
-    return render_template("About.html", user = current_user, room = room)
+    return render_template("About.html", user = current_user, HotelRoom = HotelRoom.query.filter_by(user_id = current_user.id))
 
 @login_required
 def cancelRegistration():
@@ -156,7 +156,7 @@ def cancelRegistration():
 
 @login_required
 def changeNumberOfPeople(id, num):
-    room = HotelRoom.query.filter_by(id=id).first()
+    room = HotelRoom.query.filter_by(user_id=current_user.id).first()
     if room:
         temp = room.numOfPeople
         room.numOfPeople = int(room.numOfPeople) +  int(num)
@@ -184,7 +184,7 @@ def changeNumberOfPeople(id, num):
 
 @login_required #there are some changes to be made here
 def changeRoomNight(id, checkin, checkout):
-    room = HotelRoom.query.filter_by(id=id).first()
+    room = HotelRoom.query.filter_by(user_id=id).first()
     if room:
         import datetime
         if datetime.datetime(int(checkin[:4]), int(checkin[5:7]), int(checkin[8:]), 23, 59, 59) < datetime.datetime.today():
@@ -295,6 +295,5 @@ def change(email):
         if user.OTP == m:
             return redirect(url_for('auth.changePassword', email = email))
         else:
-            print(user.OTP, m)
             flash('You have entered an invalid OTP!', category = 'error')
     return render_template("verifyOTP.html", user = User.query.filter_by(email = email).first())
