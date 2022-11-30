@@ -27,7 +27,7 @@ def checkAvailibility(roomType):
     hotelroom = HotelRoom.query.filter_by(roomType=roomType)
     registerDate = sorted([x.checkin for x in hotelroom])
     leaveDate = sorted([x.checkout for x in hotelroom])
-    count = 3 if int(roomType) == 1 else 2 if roomType == 2 else 10
+    count = 3 if int(roomType) == 1 else 2 if int(roomType) == 2 else 10
     i = j = 0
     while i < len(registerDate):
         checkin = registerDate[i]
